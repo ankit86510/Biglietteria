@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Server" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_LogInUtente_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogInUtente" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LogInUtente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInUtenteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LogInAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogInAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IService1_LogInAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RegistrazioneUtente_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrazioneUtente" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RegistrazioneUtente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrazioneUtenteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListaPartite_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListaPartite" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListaPartite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListaPartiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListaPrenotazioni_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListaPrenotazioni" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ListaPrenotazioni_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListaPrenotazioniResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CarrelloTabelle_InputMessage">
+    <wsdl:part name="parameters" element="tns:CarrelloTabelle" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CarrelloTabelle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CarrelloTabelleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RicercaPer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RicercaPer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RicercaPer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RicercaPerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RegistraPrenotazione_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistraPrenotazione" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RegistraPrenotazione_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistraPrenotazioneResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="LogInUtente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LogInUtente" message="tns:IService1_LogInUtente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LogInUtenteResponse" message="tns:IService1_LogInUtente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogInAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/LogInAdmin" message="tns:IService1_LogInAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LogInAdminResponse" message="tns:IService1_LogInAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrazioneUtente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegistrazioneUtente" message="tns:IService1_RegistrazioneUtente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegistrazioneUtenteResponse" message="tns:IService1_RegistrazioneUtente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaPartite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListaPartite" message="tns:IService1_ListaPartite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListaPartiteResponse" message="tns:IService1_ListaPartite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaPrenotazioni">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListaPrenotazioni" message="tns:IService1_ListaPrenotazioni_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListaPrenotazioniResponse" message="tns:IService1_ListaPrenotazioni_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CarrelloTabelle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CarrelloTabelle" message="tns:IService1_CarrelloTabelle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CarrelloTabelleResponse" message="tns:IService1_CarrelloTabelle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RicercaPer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RicercaPer" message="tns:IService1_RicercaPer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RicercaPerResponse" message="tns:IService1_RicercaPer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistraPrenotazione">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegistraPrenotazione" message="tns:IService1_RegistraPrenotazione_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegistraPrenotazioneResponse" message="tns:IService1_RegistraPrenotazione_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LogInUtente">
+      <soap:operation soapAction="http://tempuri.org/IService1/LogInUtente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogInAdmin">
+      <soap:operation soapAction="http://tempuri.org/IService1/LogInAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrazioneUtente">
+      <soap:operation soapAction="http://tempuri.org/IService1/RegistrazioneUtente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPartite">
+      <soap:operation soapAction="http://tempuri.org/IService1/ListaPartite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaPrenotazioni">
+      <soap:operation soapAction="http://tempuri.org/IService1/ListaPrenotazioni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CarrelloTabelle">
+      <soap:operation soapAction="http://tempuri.org/IService1/CarrelloTabelle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RicercaPer">
+      <soap:operation soapAction="http://tempuri.org/IService1/RicercaPer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistraPrenotazione">
+      <soap:operation soapAction="http://tempuri.org/IService1/RegistraPrenotazione" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/Server/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

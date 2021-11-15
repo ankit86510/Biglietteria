@@ -21,6 +21,8 @@ namespace Server
         [OperationContract]
         DataTable ListaPartite();
         [OperationContract]
+        DataTable ListaUtenti();
+        [OperationContract]
         DataTable ListaPrenotazioni(string s);
         [OperationContract]
         DataTable CarrelloTabelle(int v, decimal q);

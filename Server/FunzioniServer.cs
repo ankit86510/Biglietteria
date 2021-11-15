@@ -47,6 +47,8 @@ namespace Server
 			}
 			return ls;
 		}
+
+		
 		public List<Partita> SelectPartite()
 			{
 				/*Torna la lista di tutti i Admin se tutto va bene, altrimenti torna null*/

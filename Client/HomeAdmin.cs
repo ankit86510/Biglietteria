@@ -20,5 +20,16 @@ namespace Client
             admin = a;
             InitializeComponent();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ClientiCensiti_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = client.ListaUtenti();
+            dataGridView1.Visible = true;
+        }
     }
 }

@@ -102,7 +102,7 @@ namespace Server
                         var lsStadii = fun.SelectStadio();
                         List<string> squadre = new List<string>();
                         dt1.Columns.Add("Squadra", typeof(String));
-                        dt2.Columns.Add("Codice",typeof(String));
+                        dt2.Columns.Add("Codice", typeof(String));
                         dt2.Columns.Add("Incontro", typeof(String));
                         dt2.Columns.Add("DataPartita", typeof(String));
                         dt2.Columns.Add("OraInizioPartita", typeof(String));
@@ -169,7 +169,7 @@ namespace Server
             return dt;
         }
         public DataTable CarrelloTabelle(int v, decimal q)
-        { 
+        {
             /*Torna la tabella delle partita selezionata per il biglietto*/
             var dt = new DataTable();
             var dtCloned = new DataTable();
@@ -183,7 +183,7 @@ namespace Server
                 var adpt = new MySqlDataAdapter(querry, Connessioni.getconn());
                 adpt.Fill(dt);
                 dt.TableName = "Carrello";
-                dt.Columns.Add("N° Biglietti",typeof(int));
+                dt.Columns.Add("N° Biglietti", typeof(int));
                 dt.Rows[0][dt.Columns["N° Biglietti"]] = q.ToString();
                 dt.Columns.Add("N° Posti", typeof(string));
                 dt.Rows[0][dt.Columns["N° Posti"]] = string.Join(",", fun.AssegnaPosti(v, Decimal.ToInt32(q)));
@@ -241,7 +241,7 @@ namespace Server
                     "Prenotazione.NumeroBiglietti, Prenotazione.NumeroPosti, Prenotazione.DataOraAcquisto ,Prenotazione.TotaleBiglietto" +
                     " FROM(((Prenotazione INNER JOIN Effetuazione ON Prenotazione.ID= Effetuazione.IDPrenotazione)" +
                     " INNER JOIN Partita ON Prenotazione.CodicePartita = Partita.Codice) INNER JOIN Stadio ON Partita.IDStadio = Stadio.ID)" +
-                    " WHERE IDUtente = '" + s +"'";
+                    " WHERE IDUtente = '" + s + "'";
                 var adpt = new MySqlDataAdapter(querry, Connessioni.getconn());
                 adpt.Fill(dt);
                 dt.TableName = "ListaPrenotazioni";
@@ -255,6 +255,26 @@ namespace Server
 
 
 
+        }
+
+        public DataTable ListaUtenti()
+        {
+            /*Torna la tabella degli utenti censiti con il numero di biglietti acquistati */
+            var dt = new DataTable();
+            string query = string.Empty;
+            try
+            {
+                query = "SELECT utente.Nome,utente.Cognome,utente.Email,utente.DataNascita, SUM(prenotazione.NumeroBiglietti) as BigliettiAcquistati FROM utente inner join effetuazione on utente.Email=effetuazione.IDUtente inner join prenotazione on prenotazione.ID=effetuazione.IDPrenotazione group by Nome,Cognome";
+                var adpt = new MySqlDataAdapter(query, Connessioni.getconn());
+                adpt.Fill(dt);
+                dt.TableName = "ListaUtenti";
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Errore nella creazione della lists utenti");
+                return null;
+            }
+            return dt;
         }
     }
 }

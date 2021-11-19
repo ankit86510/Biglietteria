@@ -44,6 +44,12 @@
   <wsdl:message name="IService1_ListaPrenotazioni_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListaPrenotazioniResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_StoricoBiglietti_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoricoBiglietti" />
+  </wsdl:message>
+  <wsdl:message name="IService1_StoricoBiglietti_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoricoBigliettiResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CarrelloTabelle_InputMessage">
     <wsdl:part name="parameters" element="tns:CarrelloTabelle" />
   </wsdl:message>
@@ -86,6 +92,10 @@
     <wsdl:operation name="ListaPrenotazioni">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/ListaPrenotazioni" message="tns:IService1_ListaPrenotazioni_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/ListaPrenotazioniResponse" message="tns:IService1_ListaPrenotazioni_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoricoBiglietti">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/StoricoBiglietti" message="tns:IService1_StoricoBiglietti_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StoricoBigliettiResponse" message="tns:IService1_StoricoBiglietti_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CarrelloTabelle">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CarrelloTabelle" message="tns:IService1_CarrelloTabelle_InputMessage" />
@@ -149,6 +159,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListaPrenotazioni">
       <soap:operation soapAction="http://tempuri.org/IService1/ListaPrenotazioni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoricoBiglietti">
+      <soap:operation soapAction="http://tempuri.org/IService1/StoricoBiglietti" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

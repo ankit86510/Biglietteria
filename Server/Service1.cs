@@ -271,7 +271,26 @@ namespace Server
             }
             catch (Exception)
             {
-                Console.WriteLine("Errore nella creazione della lists utenti");
+                Console.WriteLine("Errore nella creazione della lista utenti");
+                return null;
+            }
+            return dt;
+        }
+
+        public DataTable StoricoBiglietti()
+        {
+            var dt = new DataTable();
+            string query = string.Empty;
+            try
+            {
+                query = "SELECT prenotazione.DataOraAcquisto, prenotazione.NumeroBiglietti, partita.incontro, partita.DataPartita, stadio.Nome as Stadio,stadio.Citta FROM partita inner join stadio on partita.IDStadio=stadio.ID inner join prenotazione on partita.Codice=prenotazione.CodicePartita order by DataOraAcquisto";
+                var adpt = new MySqlDataAdapter(query, Connessioni.getconn());
+                adpt.Fill(dt);
+                dt.TableName = "StoricoBiglietti";
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Errore nella crezione della lista biglietti venduti.");
                 return null;
             }
             return dt;

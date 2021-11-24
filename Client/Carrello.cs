@@ -81,7 +81,7 @@ namespace Client
                 if (senderGrid.Columns[e.ColumnIndex].Index == 9)
                 {
                     this.Hide();
-                    var quantita = new Quantita(client, utente, this, senderGrid.Rows[e.RowIndex].Index);
+                    var quantita = new Quantita(client, utente, this, Convert.ToInt32(senderGrid.Rows[e.RowIndex].Cells["Codice"].Value), senderGrid.Rows[e.RowIndex].Index);
                     quantita.button2.Visible = true;
                     quantita.button1.Visible = false;
                     quantita.Show();

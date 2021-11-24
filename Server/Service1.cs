@@ -11,6 +11,7 @@ namespace Server
     {
         //Funzioni di appoggio al server
         FunzioniServer fun = new FunzioniServer();
+
         public Utente LogInUtente(string User, string Password)
         {
             /*Torna True se riesce ad accedere, False se prova ad accedere con credenziali non valide*/
@@ -186,7 +187,11 @@ namespace Server
                 dt.Columns.Add("N° Biglietti", typeof(int));
                 dt.Rows[0][dt.Columns["N° Biglietti"]] = q.ToString();
                 dt.Columns.Add("N° Posti", typeof(string));
-                dt.Rows[0][dt.Columns["N° Posti"]] = string.Join(",", fun.AssegnaPosti(v, Decimal.ToInt32(q)));
+                List<int> ListaPosti = fun.AssegnaPosti(v, Decimal.ToInt32(q)); 
+                if (ListaPosti.Count > 20)
+                    dt.Rows[0][dt.Columns["N° Posti"]] = ListaPosti[0] + ",...," + ListaPosti[ListaPosti.Count - 1];
+                else
+                    dt.Rows[0][dt.Columns["N° Posti"]] = string.Join(",", ListaPosti);
                 dt.Columns.Add("Prezzo Biglietto in €", typeof(int));
                 dt.Rows[0][dt.Columns["Prezzo Biglietto in €"]] = q * 30;
                 dtCloned = dt.Clone();
@@ -197,7 +202,7 @@ namespace Server
                 }
                 dtCloned.Rows[0][dtCloned.Columns["DataPartita"]] = Convert.ToDateTime(dtCloned.Rows[0][dtCloned.Columns["DataPartita"]].ToString(), CultureInfo.CurrentCulture).ToString("dd-MMM-yy");
             }
-            catch (Exception)
+            catch (NullReferenceException)
             {
                 Console.WriteLine("Errore nella creazione del carrello");
                 return null;
@@ -275,6 +280,12 @@ namespace Server
                 return null;
             }
             return dt;
+        }
+        public Tuple<int, int> GetPosti(int CodicePartita)
+        {
+            var PostiTotali = fun.TotalePostiStadio(CodicePartita);
+            var PostiOccupati = fun.PostiOccupati(CodicePartita);
+            return Tuple.Create(PostiTotali, PostiOccupati);
         }
     }
 }

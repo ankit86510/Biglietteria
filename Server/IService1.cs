@@ -30,6 +30,9 @@ namespace Server
         List<DataTable> RicercaPer(string scelta, string value);
         [OperationContract]
         bool RegistraPrenotazione(Utente u, DataTable dt);
+        [OperationContract]
+        Tuple<int, int> GetPosti(int CodicePartita);
+
 
     }
 }

@@ -97,27 +97,60 @@ namespace Server
 			try
 			{
 				//Esegui e incapsula query
-				using (var result = Connessioni.Select("SELECT NumeroBiglietti FROM Prenotazione WHERE CodicePartita = " + codicePartita))
-					while (result.Read())
-						TotalePostiOccupati += result.GetInt32("NumeroBiglietti");
-				using (var result = Connessioni.Select("SELECT Stadio.PostiTotali FROM Partita INNER JOIN Stadio ON Partita.IDStadio = Stadio.ID WHERE Codice = " + codicePartita))
-					while (result.Read())
-						TotalePostiDisponibli = result.GetInt32("PostiTotali");
+				TotalePostiOccupati = PostiOccupati(codicePartita);
+				TotalePostiDisponibli = TotalePostiStadio(codicePartita);
 				TotalePostiRimanenti = TotalePostiDisponibli - TotalePostiOccupati;
-				if (TotalePostiRimanenti > 0)
+				if (TotalePostiRimanenti - np >= 0)
 					for (int i = 1; i <= np; i++)
 						ls.Add(TotalePostiOccupati + i);
+				else
+					throw new InvalidOperationException("N° totale di biglietti superano il numero dei posti totali presenti allo stadio");
 
 
 			}
-			catch (Exception)
+			catch (InvalidOperationException ex)
 			{
-				Console.WriteLine("Errore nell'inserimento dei dati della prenotazione.\n");
+				Console.WriteLine(ex.ToString());
 				return null;
 			}
 			return ls;
 
 
 		}
+		public int PostiOccupati(int codicePartita)
+		{
+			int TotalePostiOccupati = 0;
+
+			try
+			{
+				//Esegui e incapsula query
+				using (var result = Connessioni.Select("SELECT NumeroBiglietti FROM Prenotazione WHERE CodicePartita = " + codicePartita))
+					while (result.Read())
+						TotalePostiOccupati += result.GetInt32("NumeroBiglietti");
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("Errore nella cricerca dei posti occupati");
+			}
+			return TotalePostiOccupati;
+		}
+		public int TotalePostiStadio(int codicePartita)
+		{
+			int TotalePostiDisponibli = 0;
+
+			try
+			{
+				//Esegui e incapsula query
+				using (var result = Connessioni.Select("SELECT Stadio.PostiTotali FROM Partita INNER JOIN Stadio ON Partita.IDStadio = Stadio.ID WHERE Codice = " + codicePartita))
+					while (result.Read())
+						TotalePostiDisponibli = result.GetInt32("PostiTotali");
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("Errore nella cricerca dei posti totali");
+			}
+			return TotalePostiDisponibli;
+		}
+
 	}
 }

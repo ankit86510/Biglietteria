@@ -75,7 +75,7 @@ namespace Client
             {
                 if (cart.IsDisposed)
                     cart = new Carrello(client, utente);
-                var quantita = new Quantita(client, utente, cart ,Convert.ToInt32(senderGrid.Rows[e.RowIndex].Cells[senderGrid.Columns["Codice"].Name].Value.ToString()));
+                var quantita = new Quantita(client, utente, cart ,Convert.ToInt32(senderGrid.Rows[e.RowIndex].Cells[senderGrid.Columns["Codice"].Name].Value.ToString()), 0);
                 quantita.Show();
             }
 

@@ -51,6 +51,12 @@ namespace Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListaPrenotazioni", ReplyAction="http://tempuri.org/IService1/ListaPrenotazioniResponse")]
         System.Threading.Tasks.Task<System.Data.DataTable> ListaPrenotazioniAsync(string s);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StoricoBiglietti", ReplyAction="http://tempuri.org/IService1/StoricoBigliettiResponse")]
+        System.Data.DataTable StoricoBiglietti();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StoricoBiglietti", ReplyAction="http://tempuri.org/IService1/StoricoBigliettiResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> StoricoBigliettiAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CarrelloTabelle", ReplyAction="http://tempuri.org/IService1/CarrelloTabelleResponse")]
         System.Data.DataTable CarrelloTabelle(int v, decimal q);
         
@@ -149,6 +155,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataTable> ListaPrenotazioniAsync(string s) {
             return base.Channel.ListaPrenotazioniAsync(s);
+        }
+        
+        public System.Data.DataTable StoricoBiglietti() {
+            return base.Channel.StoricoBiglietti();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> StoricoBigliettiAsync() {
+            return base.Channel.StoricoBigliettiAsync();
         }
         
         public System.Data.DataTable CarrelloTabelle(int v, decimal q) {

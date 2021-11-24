@@ -25,6 +25,8 @@ namespace Server
         [OperationContract]
         DataTable ListaPrenotazioni(string s);
         [OperationContract]
+        DataTable StoricoBiglietti();
+        [OperationContract]
         DataTable CarrelloTabelle(int v, decimal q);
         [OperationContract]
         List<DataTable> RicercaPer(string scelta, string value);

@@ -65,6 +65,47 @@ namespace Server
                 return false;
             }
         }
+
+
+        public DataTable RicercaStadio()
+        {
+            DataTable dt = new DataTable();
+            string query = string.Empty;
+            try
+            {
+                query = "SELECT Nome FROM biglietteria.stadio";
+                var adpt = new MySqlDataAdapter(query, Connessioni.getconn());
+                adpt.Fill(dt);
+                dt.TableName = "ListaStadi";
+            }
+            catch
+            {
+                Console.WriteLine("Errore nel caricamento lista stadi");
+                return null;
+            }
+            return dt;
+        }
+        public bool InsNuovaPartita(DateTime Data, DateTime Ora, string Incontro, string Stadio)
+        {
+            try
+            {
+                int IDStadio = 0;
+                //Esegui e incapsula query
+                using (var result = Connessioni.Select("SELECT ID FROM Stadio WHERE Nome =" + '"' + Stadio + '"'))
+                    while (result.Read())
+                        IDStadio = result.GetInt32("ID");
+                Connessioni.Insert("INSERT INTO Partita (DataPartita, OraInizioPartita, Incontro, IDStadio) " +
+    "values ('" + Data.ToString("yyyy'-'MM'-'dd") + "', '" + Ora.ToString("HH':'mm':'ss") + "', '" + Incontro + "', '" + IDStadio + "')");
+                return true;
+
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Errore nella cricerca dei posti totali");
+                return false;
+            }
+        }
         public DataTable ListaPartite()
         {
             /*Torna la tabella delle partite e instazia gli oggetti per la classe partita*/

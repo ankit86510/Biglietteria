@@ -80,6 +80,18 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPosti", ReplyAction="http://tempuri.org/IService1/GetPostiResponse")]
         System.Threading.Tasks.Task<System.Tuple<int, int>> GetPostiAsync(int CodicePartita);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RicercaStadio", ReplyAction="http://tempuri.org/IService1/RicercaStadioResponse")]
+        System.Data.DataTable RicercaStadio();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RicercaStadio", ReplyAction="http://tempuri.org/IService1/RicercaStadioResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> RicercaStadioAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsNuovaPartita", ReplyAction="http://tempuri.org/IService1/InsNuovaPartitaResponse")]
+        bool InsNuovaPartita(System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsNuovaPartita", ReplyAction="http://tempuri.org/IService1/InsNuovaPartitaResponse")]
+        System.Threading.Tasks.Task<bool> InsNuovaPartitaAsync(System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -195,6 +207,22 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Tuple<int, int>> GetPostiAsync(int CodicePartita) {
             return base.Channel.GetPostiAsync(CodicePartita);
+        }
+        
+        public System.Data.DataTable RicercaStadio() {
+            return base.Channel.RicercaStadio();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> RicercaStadioAsync() {
+            return base.Channel.RicercaStadioAsync();
+        }
+        
+        public bool InsNuovaPartita(System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio) {
+            return base.Channel.InsNuovaPartita(Data, Ora, Incontro, Stadio);
+        }
+        
+        public System.Threading.Tasks.Task<bool> InsNuovaPartitaAsync(System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio) {
+            return base.Channel.InsNuovaPartitaAsync(Data, Ora, Incontro, Stadio);
         }
     }
 }

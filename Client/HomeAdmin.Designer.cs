@@ -40,7 +40,7 @@ namespace Client
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1, 121);
+            this.dataGridView1.Location = new System.Drawing.Point(1, 122);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -83,7 +83,7 @@ namespace Client
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(747, 41);
+            this.button4.Location = new System.Drawing.Point(716, 41);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(208, 28);

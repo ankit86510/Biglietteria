@@ -75,6 +75,18 @@
   <wsdl:message name="IService1_GetPosti_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPostiResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_RicercaStadio_InputMessage">
+    <wsdl:part name="parameters" element="tns:RicercaStadio" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RicercaStadio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RicercaStadioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsNuovaPartita_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsNuovaPartita" />
+  </wsdl:message>
+  <wsdl:message name="IService1_InsNuovaPartita_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsNuovaPartitaResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="LogInUtente">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/LogInUtente" message="tns:IService1_LogInUtente_InputMessage" />
@@ -119,6 +131,14 @@
     <wsdl:operation name="GetPosti">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPosti" message="tns:IService1_GetPosti_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPostiResponse" message="tns:IService1_GetPosti_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RicercaStadio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RicercaStadio" message="tns:IService1_RicercaStadio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RicercaStadioResponse" message="tns:IService1_RicercaStadio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsNuovaPartita">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsNuovaPartita" message="tns:IService1_InsNuovaPartita_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsNuovaPartitaResponse" message="tns:IService1_InsNuovaPartita_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -215,6 +235,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetPosti">
       <soap:operation soapAction="http://tempuri.org/IService1/GetPosti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RicercaStadio">
+      <soap:operation soapAction="http://tempuri.org/IService1/RicercaStadio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsNuovaPartita">
+      <soap:operation soapAction="http://tempuri.org/IService1/InsNuovaPartita" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

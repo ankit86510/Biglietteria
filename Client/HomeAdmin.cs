@@ -40,7 +40,8 @@ namespace Client
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dataGridView1.Columns[0].Visible = false;
+            var np = new NuovaPartita(client);
+            np.Show();
 
 
         }

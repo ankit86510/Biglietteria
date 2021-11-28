@@ -9,10 +9,9 @@ namespace Server
 {
     class FunzioniServer
     {
+		//Ritorna la lista di tutti i clienti se la richiesta al DB va a buon fine, altrimenti ritorna null
 		public List<Utente> SelectUtenti()
 		{
-			/*Torna la lista di tutti i clienti se tutto va bene, altrimenti torna null*/
-
 			var ls = new List<Utente>();
 			try
 			{
@@ -28,10 +27,9 @@ namespace Server
 			}
 			return ls;
 		}
+		//Ritorna la lista di tutti i Admin se la richiesta al DB va a buon fine, altrimenti ritorna null
 		public List<Admin> SelectAdmin()
 		{
-			/*Torna la lista di tutti i Admin se tutto va bene, altrimenti torna null*/
-
 			var ls = new List<Admin>();
 			try
 			{
@@ -48,11 +46,9 @@ namespace Server
 			return ls;
 		}
 
-		
+		//Ritorna la lista delle partite da giocare
 		public List<Partita> SelectPartite()
 			{
-				/*Torna la lista di tutti i Admin se tutto va bene, altrimenti torna null*/
-
 				var ls = new List<Partita>();
 				try
 				{
@@ -68,10 +64,10 @@ namespace Server
 				}
 				return ls;
 			}
+
+		//Ritorna la lista degli stadi
 		public List<Stadio> SelectStadio()
 		{
-			/*Torna la lista di tutti i Admin se tutto va bene, altrimenti torna null*/
-
 			var ls = new List<Stadio>();
 			try
 			{
@@ -87,6 +83,8 @@ namespace Server
 			}
 			return ls;
 		}
+
+
 		public List<int> AssegnaPosti(int codicePartita, int np)
         {
 			var ls = new List<int>();

@@ -38,6 +38,7 @@ namespace Server
         {
             try
             {
+                // Ritorna True se l'email inserita per la registrazione non esiste nel DB, altrimenti False
                 List<Utente> u = fun.SelectUtenti();
                 List<string> email = new List<string>();
                 foreach (var x in u)
@@ -66,7 +67,7 @@ namespace Server
             }
         }
 
-
+        //Funzione restituisce lista nomi stadi in formato DataTable
         public DataTable RicercaStadio()
         {
             DataTable dt = new DataTable();
@@ -85,6 +86,8 @@ namespace Server
             }
             return dt;
         }
+
+        //Funzione inserisce nuovo evento nella tabella Partita, cercando prima il corrispettivo IDStadio della stringa Stadio recuperata da form
         public bool InsNuovaPartita(DateTime Data, DateTime Ora, string Incontro, string Stadio)
         {
             try
@@ -102,13 +105,14 @@ namespace Server
             }
             catch (Exception)
             {
-                Console.WriteLine("Errore nella cricerca dei posti totali");
+                Console.WriteLine("Errore nell'inserimento nuova partita");
                 return false;
             }
         }
+
+        //Funzione ritorna la tabella delle partite e instazia gli oggetti per la classe partita
         public DataTable ListaPartite()
         {
-            /*Torna la tabella delle partite e instazia gli oggetti per la classe partita*/
             var dt = new DataTable();
             string querry = string.Empty;
             try
@@ -116,7 +120,7 @@ namespace Server
                 querry = "SELECT Partita.Codice,Partita.Incontro,Partita.DataPartita,Partita.OraInizioPartita, Stadio.Nome as Luogo, Stadio.Citta FROM Partita INNER JOIN Stadio ON Partita.IDStadio = Stadio.ID";
                 var adpt = new MySqlDataAdapter(querry, Connessioni.getconn());
                 adpt.Fill(dt);
-                dt.TableName = "ListaPrtite";
+                dt.TableName = "ListaPartite";
             }
             catch (Exception)
             {
@@ -126,6 +130,8 @@ namespace Server
             return dt;
 
         }
+        
+        //Funzione ritorna tabella con prossimi eventi in base a ricerca scelta (Squadra - Stadio - Data)
         public List<DataTable> RicercaPer(string scelta, string value)
         {
             DataTable dt1 = new DataTable();
@@ -210,9 +216,10 @@ namespace Server
             dt.Add(dt2);
             return dt;
         }
+
+        //Ritorna la tabella delle partite selezionate per il biglietto
         public DataTable CarrelloTabelle(int v, decimal q)
         {
-            /*Torna la tabella delle partita selezionata per il biglietto*/
             var dt = new DataTable();
             var dtCloned = new DataTable();
             string querry = string.Empty;
@@ -276,9 +283,9 @@ namespace Server
             }
 
         }
+        //Funzione che ritorna la tabella delle prenotazioni
         public DataTable ListaPrenotazioni(string s)
         {
-            /*Torna la tabella delle partite e instazia gli oggetti per la classe partita*/
             var dt = new DataTable();
             string querry = string.Empty;
             try
@@ -303,9 +310,9 @@ namespace Server
 
         }
 
+        //Funzione ritorna la tabella degli utenti censiti con il numero di biglietti acquistati
         public DataTable ListaUtenti()
         {
-            /*Torna la tabella degli utenti censiti con il numero di biglietti acquistati */
             var dt = new DataTable();
             string query = string.Empty;
             try
@@ -323,6 +330,7 @@ namespace Server
             return dt;
         }
 
+        //Funzione ritorna tabella
         public DataTable StoricoBiglietti()
         {
             var dt = new DataTable();
@@ -341,6 +349,7 @@ namespace Server
             }
             return dt;
         }
+        //Funzione ritorna Posti totali e posti occupati per la partita passata alla stessa
         public Tuple<int, int> GetPosti(int CodicePartita)
         {
             var PostiTotali = fun.TotalePostiStadio(CodicePartita);

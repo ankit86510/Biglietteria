@@ -10,6 +10,7 @@ namespace Server
     [DataContract]
     class Stadio
     {
+        //Attributi
         [DataMember]
         private int ID;
         [DataMember]
@@ -21,6 +22,7 @@ namespace Server
         [DataMember]
         private int PostiTotali;
 
+        //Costruttore
         public Stadio(int i, string n, string c, string r, int pt) { ID = i; Nome = n; Citta = c; Regione = r; PostiTotali = pt; }
 
         //Getter

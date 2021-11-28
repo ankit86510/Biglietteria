@@ -9,6 +9,7 @@ namespace Server
 {
     class Prenotazione
     {
+        //Attributi
         [DataMember]
         private int ID;
         [DataMember]
@@ -22,6 +23,7 @@ namespace Server
         [DataMember]
         private int CodicePartita;
 
+        //Costruttore
         public Prenotazione(int id, DateTime d, int i, int nb, string np, int cp) { ID = i; DataOraAcquisto = d; PrezzoTotaleBiglietto = i; NumeroBiglietti = nb;  NumeroPosti = np; CodicePartita = cp; }
 
         //Getter

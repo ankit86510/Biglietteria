@@ -10,6 +10,7 @@ namespace Server
     [DataContract]
     class Partita
     {
+        //Attributi
         [DataMember]
         private int Codice;
         [DataMember]
@@ -21,7 +22,7 @@ namespace Server
         [DataMember]
         private int IDStadio;
 
-
+        //Costruttore
         public Partita(int c, DateTime dp, string op, string i, int ids) { Codice = c; DataPartita = dp; OraInzioPartita = op; Incontro = i; IDStadio = ids; }
 
         //Getter

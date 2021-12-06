@@ -97,9 +97,14 @@ namespace Server
                 using (var result = Connessioni.Select("SELECT ID FROM Stadio WHERE Nome =" + '"' + Stadio + '"'))
                     while (result.Read())
                         IDStadio = result.GetInt32("ID");
-                Connessioni.Insert("INSERT INTO Partita (DataPartita, OraInizioPartita, Incontro, IDStadio) " +
-    "values ('" + Data.ToString("yyyy'-'MM'-'dd") + "', '" + Ora.ToString("HH':'mm':'ss") + "', '" + Incontro + "', '" + IDStadio + "')");
-                return true;
+                if (fun.VerficaConcomittanzeInsPartita("Nuova", Data, Ora, Incontro, IDStadio))
+                {
+                    Connessioni.Insert("INSERT INTO Partita (DataPartita, OraInizioPartita, Incontro, IDStadio) " +
+                    " values ('" + Data.ToString("yyyy'-'MM'-'dd") + "', '" + Ora.ToString("HH':'mm':'ss") + "', '" + Incontro + "', '" + IDStadio + "')");
+                    return true;
+                }
+                else
+                    return false;
 
 
             }
@@ -110,6 +115,49 @@ namespace Server
             }
         }
 
+        //Funzione per modificare evento nella tabella Partita, cercando prima il corrispettivo IDStadio della stringa Stadio recuperata da form
+        public bool ModificaPartita(int CodicePartita, DateTime Data, DateTime Ora, string Incontro, string Stadio)
+        {
+            try
+            {
+                int IDStadio = 0;
+                //Esegui e incapsula query
+                using (var result = Connessioni.Select("SELECT ID FROM Stadio WHERE Nome =" + '"' + Stadio + '"'))
+                    while (result.Read())
+                        IDStadio = result.GetInt32("ID");
+                if (fun.VerficaConcomittanzeInsPartita("Modifica " + CodicePartita, Data, Ora, Incontro, IDStadio))
+                {
+                    Connessioni.Insert("UPDATE Partita SET DataPartita = " + "'" +  Data.ToString("yyyy'-'MM'-'dd") + "'"  +
+                    " , OraInizioPartita = " + "'" + Ora.ToString("HH':'mm':'ss") + "'" + ", Incontro = " + '"' + Incontro  + '"' + ", IDStadio = " + IDStadio +
+                    " WHERE Codice = " + CodicePartita);
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Errore nella modifica della partita");
+                return false;
+            }
+
+
+        }
+        //Funzione per eliminare un evento nella tabella Partita
+        public bool EliminaPartita(int CodicePartita)
+        {
+            try
+            {
+                Connessioni.Delete("DELETE FROM Partita WHERE Codice =" + CodicePartita);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Errore nella modifica della partita");
+                return false;
+            }
+            return true;
+
+        }
         //Funzione ritorna la tabella delle partite e instazia gli oggetti per la classe partita
         public DataTable ListaPartite()
         {
@@ -337,7 +385,7 @@ namespace Server
             string query = string.Empty;
             try
             {
-                query = "SELECT prenotazione.DataOraAcquisto, prenotazione.NumeroBiglietti, partita.incontro, partita.DataPartita, stadio.Nome as Stadio,stadio.Citta FROM partita inner join stadio on partita.IDStadio=stadio.ID inner join prenotazione on partita.Codice=prenotazione.CodicePartita order by DataOraAcquisto";
+                query = "SELECT prenotazione.DataOraAcquisto, prenotazione.NumeroBiglietti, partita.incontro, partita.DataPartita, stadio.Nome as Stadio,stadio.Citta, Effetuazione.IDUtente as Email_Utente FROM partita inner join stadio on partita.IDStadio=stadio.ID inner join prenotazione on partita.Codice=prenotazione.CodicePartita inner join effetuazione on prenotazione.ID=effetuazione.IDPrenotazione order by DataOraAcquisto";
                 var adpt = new MySqlDataAdapter(query, Connessioni.getconn());
                 adpt.Fill(dt);
                 dt.TableName = "StoricoBiglietti";

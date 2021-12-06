@@ -39,7 +39,8 @@ namespace Client
                         var admin = new HomeAdmin(client , a);
                         admin.Closed += (s, args) => this.Close();
                         admin.Show();
-                        MessageBox.Show("Admin Succesfully loged in", "Success", MessageBoxButtons.OK);
+                        MessageBox.Show("Benvenuto/a " + a.getNome() + " " + a.getCognome() + "\r\n" + 
+                            "Admin Succesfully loged in", "Success", MessageBoxButtons.OK);
                     }
                     else if (client.LogInUtente(txtemail.Text, txtpsw.Text) != null)
                     {
@@ -48,7 +49,8 @@ namespace Client
                         var utente = new HomeUtente(client, u);
                         utente.Closed += (s, args) => this.Close();
                         utente.Show();
-                        MessageBox.Show("User Succesfully loged in", "Success", MessageBoxButtons.OK);
+                        MessageBox.Show("Benvenuto/a " + u.getNome() + " " + u.getCognome() + "\r\n" +
+                            "User Succesfully loged in", "Success", MessageBoxButtons.OK);
                     }
                     else
                         MessageBox.Show("No Account avilable with this username and password ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

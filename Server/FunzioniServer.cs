@@ -55,7 +55,7 @@ namespace Server
 				//Esegui e incapsula query
 				using (var result = Connessioni.Select("SELECT * FROM Partita"))
 					while (result.Read())
-						ls.Add(new Partita(result.GetInt32("Codice"), DateTime.Parse(result.GetString("DataPartita")), result.GetString("OraInizioPartita"), result.GetString("Incontro"), result.GetInt32("IDStadio")));
+						ls.Add(new Partita(result.GetInt32("Codice"), DateTime.Parse(result.GetString("DataPartita")), DateTime.Parse(result.GetString("OraInizioPartita")), result.GetString("Incontro"), result.GetInt32("IDStadio")));
 				}
 			catch (Exception)
 				{
@@ -128,7 +128,7 @@ namespace Server
 			}
 			catch (Exception)
 			{
-				Console.WriteLine("Errore nella cricerca dei posti occupati");
+				Console.WriteLine("Errore nella ricerca dei posti occupati");
 			}
 			return TotalePostiOccupati;
 		}
@@ -145,10 +145,41 @@ namespace Server
 			}
 			catch (Exception)
 			{
-				Console.WriteLine("Errore nella cricerca dei posti totali");
+				Console.WriteLine("Errore nella ricerca dei posti totali");
 			}
 			return TotalePostiDisponibli;
 		}
+		public bool VerficaConcomittanzeInsPartita(string opzione,DateTime Data, DateTime Ora, string Incontro, int IDStadio)
+        {
+			string[] Squadre = Incontro.Split('-');
+			List<Partita> ls = SelectPartite();
+			try
+			{
+				foreach (var Partita in ls)
+				{
+					if ((Partita.getIncontro().Contains(Squadre[0]) && Partita.getIncontro().Contains(Squadre[1])) || Partita.getIDStadio().Equals(IDStadio) || Partita.getIncontro().Contains(Squadre[0]) || Partita.getIncontro().Contains(Squadre[1]))
+					{
+						if (Partita.getDataPartita().ToString("yyyy'-'MM'-'dd").Equals(Data.ToString("yyyy'-'MM'-'dd")))
+                        {
+							if (opzione.Contains("Modifica"))
+                            {
+								var cp = Convert.ToInt32(opzione.Split(' ')[1]);
+								if ((!Partita.getOraInizioPartia().ToString("HH':'mm':'ss").Equals(Ora.ToString("HH':'mm':'ss"))) && (Partita.getCodice() == cp))
+									return true;
+							}
+							return false;
+						}
+					}
 
+				}
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("Errore nella cricerca dei posti totali");
+				return false;
+			}
+			return true;
+
+		}
 	}
 }

@@ -37,6 +37,11 @@ namespace Server
         [OperationContract]
         bool InsNuovaPartita(DateTime Data, DateTime Ora, string Incontro, string Stadio);
         [OperationContract]
+        bool ModificaPartita(int CodicePartita, DateTime Data, DateTime Ora, string Incontro, string Stadio);
+        [OperationContract]
+        bool EliminaPartita(int CodicePartita);
+
+        [OperationContract]
         Tuple<int, int> GetPosti(int CodicePartita);
 
 

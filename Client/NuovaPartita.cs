@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace Client
     public partial class NuovaPartita : Form
     {
         public ServiceReference1.Service1Client client;
-
+        DataGridViewRow row;
+        HomeAdmin ha;
         public NuovaPartita(ServiceReference1.Service1Client Client)
         {
             client = Client;
@@ -23,52 +25,66 @@ namespace Client
             stadioPicker.ValueMember = "Nome";
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        public NuovaPartita(HomeAdmin a, ServiceReference1.Service1Client Client, DataGridViewRow r)
         {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+            ha = a;
+            client = Client;
+            row = r;
+            InitializeComponent();
+            this.Text = "Modifica Partita";
+            label1.Text = "Modifica partita esistente: ";
+            stadioPicker.DataSource = client.RicercaStadio();
+            stadioPicker.DisplayMember = "Nome";
+            stadioPicker.ValueMember = "Nome";
+            dateTimePicker1.Value = (DateTime)r.Cells["DataPartita"].Value;
+            dateTimePicker2.Value = DateTime.ParseExact(Convert.ToString(r.Cells["OraInizioPartita"].Value), "HH:mm:ss", CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);
+            string incontro = (string)r.Cells["Incontro"].Value;
+            string[] squadre = incontro.Split('-');
+            listBox1.SelectedItem  = squadre[0];
+            listBox2.SelectedItem = squadre[1];
+            stadioPicker.SelectedIndex = stadioPicker.FindString((string)r.Cells["Luogo"].Value);
 
         }
 
         private void Salva_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(dateTimePicker1.Text);
-            if (dateTimePicker1.Text != string.Empty && dateTimePicker2.Text != string.Empty && incontro.Text != string.Empty && stadioPicker.Text != string.Empty)
+            if (listBox1.Text == listBox2.Text)
+            {
+                MessageBox.Show("L'incontro non può essere tra due squadre uguali", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            
+            var incontro = listBox1.Text + '-' + listBox2.Text;
+            if (dateTimePicker1.Text != string.Empty && dateTimePicker2.Text != string.Empty && stadioPicker.Text != string.Empty)
             {
                 try
                 {
                     dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-                    if (client.InsNuovaPartita(dateTimePicker1.Value, dateTimePicker2.Value, incontro.Text, stadioPicker.Text))
+                    if (row == null)
                     {
-                        MessageBox.Show("Nuovo evento inserito correttamente", "Success", MessageBoxButtons.OK);
+                        if (client.InsNuovaPartita(dateTimePicker1.Value, dateTimePicker2.Value, incontro, stadioPicker.Text))
+                        {
+                            MessageBox.Show("Nuovo evento inserito correttamente", "Success", MessageBoxButtons.OK);
+                            this.Close();
+                            return;
+                        }
                     }
                     else
-                        MessageBox.Show("Utente con la Email già presente nel database! Inserisci una email diversa ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    {
+                        if (client.ModificaPartita((int)row.Cells["Codice"].Value, dateTimePicker1.Value, dateTimePicker2.Value, incontro, stadioPicker.Text))
+                        {
+                            MessageBox.Show("Modifica avvenuta correttamente", "Success", MessageBoxButtons.OK);
+                            ha.button4.PerformClick();
+                            this.Close();
+                            return;
+                        }
+                    }
+                    MessageBox.Show("Problemi di concomittanza nell'inserimento della partita" + "\r\n" +
+                    "Possibili errori potrebbero essere le seguenti:" + "\r\n" +
+                    "1)Inserimento di una partita già esistente" + "\r\n" +
+                    "2)Le squadre selezionate hanno già in programma una partita nella data selezionata" + "\r\n" +
+                    "3)La data selezionata ha già in programma una partita in quel stadio" + "\r\n" +
+                    "(uno stadio può avere in programma solo una partità nell'arco della giornata)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception)
                 {
@@ -81,9 +97,5 @@ namespace Client
             }
         }
 
-        private void stadioPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

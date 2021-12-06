@@ -75,6 +75,12 @@ namespace Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegistraPrenotazione", ReplyAction="http://tempuri.org/IService1/RegistraPrenotazioneResponse")]
         System.Threading.Tasks.Task<bool> RegistraPrenotazioneAsync(Server.Utente u, System.Data.DataTable dt);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPosti", ReplyAction="http://tempuri.org/IService1/GetPostiResponse")]
+        System.Tuple<int, int> GetPosti(int CodicePartita);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPosti", ReplyAction="http://tempuri.org/IService1/GetPostiResponse")]
+        System.Threading.Tasks.Task<System.Tuple<int, int>> GetPostiAsync(int CodicePartita);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RicercaStadio", ReplyAction="http://tempuri.org/IService1/RicercaStadioResponse")]
         System.Data.DataTable RicercaStadio();
         
@@ -86,24 +92,6 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/InsNuovaPartita", ReplyAction="http://tempuri.org/IService1/InsNuovaPartitaResponse")]
         System.Threading.Tasks.Task<bool> InsNuovaPartitaAsync(System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ModificaPartita", ReplyAction="http://tempuri.org/IService1/ModificaPartitaResponse")]
-        bool ModificaPartita(int CodicePartita, System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ModificaPartita", ReplyAction="http://tempuri.org/IService1/ModificaPartitaResponse")]
-        System.Threading.Tasks.Task<bool> ModificaPartitaAsync(int CodicePartita, System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EliminaPartita", ReplyAction="http://tempuri.org/IService1/EliminaPartitaResponse")]
-        bool EliminaPartita(int CodicePartita);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EliminaPartita", ReplyAction="http://tempuri.org/IService1/EliminaPartitaResponse")]
-        System.Threading.Tasks.Task<bool> EliminaPartitaAsync(int CodicePartita);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPosti", ReplyAction="http://tempuri.org/IService1/GetPostiResponse")]
-        System.Tuple<int, int> GetPosti(int CodicePartita);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPosti", ReplyAction="http://tempuri.org/IService1/GetPostiResponse")]
-        System.Threading.Tasks.Task<System.Tuple<int, int>> GetPostiAsync(int CodicePartita);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -213,6 +201,14 @@ namespace Client.ServiceReference1 {
             return base.Channel.RegistraPrenotazioneAsync(u, dt);
         }
         
+        public System.Tuple<int, int> GetPosti(int CodicePartita) {
+            return base.Channel.GetPosti(CodicePartita);
+        }
+        
+        public System.Threading.Tasks.Task<System.Tuple<int, int>> GetPostiAsync(int CodicePartita) {
+            return base.Channel.GetPostiAsync(CodicePartita);
+        }
+        
         public System.Data.DataTable RicercaStadio() {
             return base.Channel.RicercaStadio();
         }
@@ -227,30 +223,6 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> InsNuovaPartitaAsync(System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio) {
             return base.Channel.InsNuovaPartitaAsync(Data, Ora, Incontro, Stadio);
-        }
-        
-        public bool ModificaPartita(int CodicePartita, System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio) {
-            return base.Channel.ModificaPartita(CodicePartita, Data, Ora, Incontro, Stadio);
-        }
-        
-        public System.Threading.Tasks.Task<bool> ModificaPartitaAsync(int CodicePartita, System.DateTime Data, System.DateTime Ora, string Incontro, string Stadio) {
-            return base.Channel.ModificaPartitaAsync(CodicePartita, Data, Ora, Incontro, Stadio);
-        }
-        
-        public bool EliminaPartita(int CodicePartita) {
-            return base.Channel.EliminaPartita(CodicePartita);
-        }
-        
-        public System.Threading.Tasks.Task<bool> EliminaPartitaAsync(int CodicePartita) {
-            return base.Channel.EliminaPartitaAsync(CodicePartita);
-        }
-        
-        public System.Tuple<int, int> GetPosti(int CodicePartita) {
-            return base.Channel.GetPosti(CodicePartita);
-        }
-        
-        public System.Threading.Tasks.Task<System.Tuple<int, int>> GetPostiAsync(int CodicePartita) {
-            return base.Channel.GetPostiAsync(CodicePartita);
         }
     }
 }

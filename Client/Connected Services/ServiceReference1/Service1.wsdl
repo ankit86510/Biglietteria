@@ -69,6 +69,12 @@
   <wsdl:message name="IService1_RegistraPrenotazione_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegistraPrenotazioneResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetPosti_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPosti" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPosti_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPostiResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_RicercaStadio_InputMessage">
     <wsdl:part name="parameters" element="tns:RicercaStadio" />
   </wsdl:message>
@@ -80,24 +86,6 @@
   </wsdl:message>
   <wsdl:message name="IService1_InsNuovaPartita_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsNuovaPartitaResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_ModificaPartita_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModificaPartita" />
-  </wsdl:message>
-  <wsdl:message name="IService1_ModificaPartita_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModificaPartitaResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_EliminaPartita_InputMessage">
-    <wsdl:part name="parameters" element="tns:EliminaPartita" />
-  </wsdl:message>
-  <wsdl:message name="IService1_EliminaPartita_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EliminaPartitaResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_GetPosti_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetPosti" />
-  </wsdl:message>
-  <wsdl:message name="IService1_GetPosti_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetPostiResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="LogInUtente">
@@ -140,6 +128,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegistraPrenotazione" message="tns:IService1_RegistraPrenotazione_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegistraPrenotazioneResponse" message="tns:IService1_RegistraPrenotazione_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetPosti">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPosti" message="tns:IService1_GetPosti_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPostiResponse" message="tns:IService1_GetPosti_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RicercaStadio">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RicercaStadio" message="tns:IService1_RicercaStadio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/RicercaStadioResponse" message="tns:IService1_RicercaStadio_OutputMessage" />
@@ -147,18 +139,6 @@
     <wsdl:operation name="InsNuovaPartita">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsNuovaPartita" message="tns:IService1_InsNuovaPartita_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsNuovaPartitaResponse" message="tns:IService1_InsNuovaPartita_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModificaPartita">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ModificaPartita" message="tns:IService1_ModificaPartita_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ModificaPartitaResponse" message="tns:IService1_ModificaPartita_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EliminaPartita">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EliminaPartita" message="tns:IService1_EliminaPartita_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EliminaPartitaResponse" message="tns:IService1_EliminaPartita_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPosti">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPosti" message="tns:IService1_GetPosti_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPostiResponse" message="tns:IService1_GetPosti_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -253,6 +233,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPosti">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPosti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RicercaStadio">
       <soap:operation soapAction="http://tempuri.org/IService1/RicercaStadio" style="document" />
       <wsdl:input>
@@ -264,33 +253,6 @@
     </wsdl:operation>
     <wsdl:operation name="InsNuovaPartita">
       <soap:operation soapAction="http://tempuri.org/IService1/InsNuovaPartita" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModificaPartita">
-      <soap:operation soapAction="http://tempuri.org/IService1/ModificaPartita" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EliminaPartita">
-      <soap:operation soapAction="http://tempuri.org/IService1/EliminaPartita" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPosti">
-      <soap:operation soapAction="http://tempuri.org/IService1/GetPosti" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

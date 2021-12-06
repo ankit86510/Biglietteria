@@ -259,38 +259,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ModificaPartita">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CodicePartita" type="xs:int" />
-        <xs:element minOccurs="0" name="Data" type="xs:dateTime" />
-        <xs:element minOccurs="0" name="Ora" type="xs:dateTime" />
-        <xs:element minOccurs="0" name="Incontro" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="Stadio" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ModificaPartitaResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ModificaPartitaResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EliminaPartita">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CodicePartita" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EliminaPartitaResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="EliminaPartitaResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetPosti">
     <xs:complexType>
       <xs:sequence>

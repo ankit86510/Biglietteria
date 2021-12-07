@@ -44,7 +44,7 @@ namespace Client
             // 
             // Partite
             // 
-            this.Partite.Location = new System.Drawing.Point(31, 22);
+            this.Partite.Location = new System.Drawing.Point(116, 25);
             this.Partite.Name = "Partite";
             this.Partite.Size = new System.Drawing.Size(109, 23);
             this.Partite.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace Client
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(1, 71);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1131, 399);
+            this.dataGridView1.Size = new System.Drawing.Size(1268, 402);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Visible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -69,7 +69,7 @@ namespace Client
             "Squadra",
             "Data Partita",
             "Stadio"});
-            this.comboBox1.Location = new System.Drawing.Point(432, 24);
+            this.comboBox1.Location = new System.Drawing.Point(517, 27);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(109, 21);
             this.comboBox1.TabIndex = 2;
@@ -78,7 +78,7 @@ namespace Client
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(429, 10);
+            this.label1.Location = new System.Drawing.Point(514, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 3;
@@ -87,7 +87,7 @@ namespace Client
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(636, 9);
+            this.label2.Location = new System.Drawing.Point(721, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 4;
@@ -97,7 +97,7 @@ namespace Client
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(639, 24);
+            this.comboBox2.Location = new System.Drawing.Point(724, 27);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(109, 21);
             this.comboBox2.TabIndex = 5;
@@ -107,7 +107,7 @@ namespace Client
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Client.Properties.Resources.Icon_Small_40;
-            this.pictureBox1.Location = new System.Drawing.Point(1012, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(1106, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(49, 43);
             this.pictureBox1.TabIndex = 6;
@@ -116,7 +116,7 @@ namespace Client
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(221, 22);
+            this.button1.Location = new System.Drawing.Point(306, 25);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 23);
             this.button1.TabIndex = 7;
@@ -126,7 +126,7 @@ namespace Client
             // 
             // LOGOUT
             // 
-            this.LOGOUT.Location = new System.Drawing.Point(843, 22);
+            this.LOGOUT.Location = new System.Drawing.Point(928, 25);
             this.LOGOUT.Name = "LOGOUT";
             this.LOGOUT.Size = new System.Drawing.Size(75, 23);
             this.LOGOUT.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1133, 474);
+            this.ClientSize = new System.Drawing.Size(1270, 474);
             this.Controls.Add(this.LOGOUT);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);

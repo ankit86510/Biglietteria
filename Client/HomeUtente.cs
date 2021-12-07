@@ -33,16 +33,31 @@ namespace Client
                 buttons.FlatStyle = FlatStyle.Standard;
                 buttons.CellTemplate.Style.BackColor = Color.Honeydew;
             }
+            DataGridViewButtonColumn button2 = new DataGridViewButtonColumn();
+            {
+                button2.HeaderText = "Cancella Prenotazione";
+                button2.Text = "Cancella Prenotazione";
+                button2.UseColumnTextForButtonValue = true;
+                button2.AutoSizeMode =
+                    DataGridViewAutoSizeColumnMode.AllCells;
+                button2.FlatStyle = FlatStyle.Standard;
+                button2.CellTemplate.Style.BackColor = Color.IndianRed;
+
+            }
             dataGridView1.Columns.Add(buttons);
+            dataGridView1.Columns.Add(button2);
+
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
         }
 
         private void Partite_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = client.ListaPartite();
             dataGridView1.Columns["Codice"].DisplayIndex = 0;
-            dataGridView1.Columns[0].DisplayIndex = 6;
+            dataGridView1.Columns[0].DisplayIndex = 7;
             dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[1].Visible = false;
             dataGridView1.Visible = true;
         }
 
@@ -60,8 +75,9 @@ namespace Client
         {
             dataGridView1.DataSource = client.RicercaPer(comboBox1.Text, comboBox2.Text)[1];
             dataGridView1.Columns["Codice"].DisplayIndex = 0;
-            dataGridView1.Columns[0].DisplayIndex = 6;
+            dataGridView1.Columns[0].DisplayIndex = 7;
             dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[1].Visible = false;
             dataGridView1.Visible = true;
 
         }
@@ -73,10 +89,24 @@ namespace Client
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0 && e.RowIndex != senderGrid.Rows.Count - 1)
             {
-                if (cart.IsDisposed)
-                    cart = new Carrello(client, utente);
-                var quantita = new Quantita(client, utente, cart ,Convert.ToInt32(senderGrid.Rows[e.RowIndex].Cells[senderGrid.Columns["Codice"].Name].Value.ToString()), 0);
-                quantita.Show();
+                if (senderGrid.Columns[e.ColumnIndex].Index == 0)
+                {
+                    if (cart.IsDisposed)
+                        cart = new Carrello(client, utente);
+                    var quantita = new Quantita(client, utente, cart, Convert.ToInt32(senderGrid.Rows[e.RowIndex].Cells[senderGrid.Columns["Codice"].Name].Value.ToString()), 0);
+                    quantita.Show();
+                }
+                else
+                {
+                    if (client.EliminaPrenotazione((int)senderGrid.Rows[e.RowIndex].Cells["ID_Prenotazione"].Value))
+                    {
+                        MessageBox.Show("Prenotazione rimossa con successo", "Success", MessageBoxButtons.OK);
+                        button1.PerformClick();
+                    }
+                    else
+                        MessageBox.Show("Qualcosa è andato storto!!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
 
         }
@@ -92,8 +122,11 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Columns[0].Visible = false;
             dataGridView1.DataSource = client.ListaPrenotazioni(utente.getEmail());
+            dataGridView1.Columns["ID_Prenotazione"].DisplayIndex = 0;
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].DisplayIndex = 11;
+            dataGridView1.Columns[1].Visible = true;
             dataGridView1.Visible = true;
 
 

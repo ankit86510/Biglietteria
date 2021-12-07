@@ -69,6 +69,12 @@
   <wsdl:message name="IService1_RegistraPrenotazione_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegistraPrenotazioneResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_EliminaPrenotazione_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminaPrenotazione" />
+  </wsdl:message>
+  <wsdl:message name="IService1_EliminaPrenotazione_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminaPrenotazioneResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_RicercaStadio_InputMessage">
     <wsdl:part name="parameters" element="tns:RicercaStadio" />
   </wsdl:message>
@@ -139,6 +145,10 @@
     <wsdl:operation name="RegistraPrenotazione">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegistraPrenotazione" message="tns:IService1_RegistraPrenotazione_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegistraPrenotazioneResponse" message="tns:IService1_RegistraPrenotazione_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPrenotazione">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/EliminaPrenotazione" message="tns:IService1_EliminaPrenotazione_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/EliminaPrenotazioneResponse" message="tns:IService1_EliminaPrenotazione_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RicercaStadio">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RicercaStadio" message="tns:IService1_RicercaStadio_InputMessage" />
@@ -246,6 +256,15 @@
     </wsdl:operation>
     <wsdl:operation name="RegistraPrenotazione">
       <soap:operation soapAction="http://tempuri.org/IService1/RegistraPrenotazione" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminaPrenotazione">
+      <soap:operation soapAction="http://tempuri.org/IService1/EliminaPrenotazione" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

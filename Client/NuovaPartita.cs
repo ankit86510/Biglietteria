@@ -16,9 +16,10 @@ namespace Client
         public ServiceReference1.Service1Client client;
         DataGridViewRow row;
         HomeAdmin ha;
-        public NuovaPartita(ServiceReference1.Service1Client Client)
+        public NuovaPartita(HomeAdmin a, ServiceReference1.Service1Client Client)
         {
             client = Client;
+            ha = a;
             InitializeComponent();
             stadioPicker.DataSource = client.RicercaStadio();
             stadioPicker.DisplayMember = "Nome";
@@ -65,6 +66,7 @@ namespace Client
                         if (client.InsNuovaPartita(dateTimePicker1.Value, dateTimePicker2.Value, incontro, stadioPicker.Text))
                         {
                             MessageBox.Show("Nuovo evento inserito correttamente", "Success", MessageBoxButtons.OK);
+                            ha.button4.PerformClick();
                             this.Close();
                             return;
                         }

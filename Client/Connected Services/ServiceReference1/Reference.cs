@@ -75,6 +75,12 @@ namespace Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegistraPrenotazione", ReplyAction="http://tempuri.org/IService1/RegistraPrenotazioneResponse")]
         System.Threading.Tasks.Task<bool> RegistraPrenotazioneAsync(Server.Utente u, System.Data.DataTable dt);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EliminaPrenotazione", ReplyAction="http://tempuri.org/IService1/EliminaPrenotazioneResponse")]
+        bool EliminaPrenotazione(int idp);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EliminaPrenotazione", ReplyAction="http://tempuri.org/IService1/EliminaPrenotazioneResponse")]
+        System.Threading.Tasks.Task<bool> EliminaPrenotazioneAsync(int idp);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RicercaStadio", ReplyAction="http://tempuri.org/IService1/RicercaStadioResponse")]
         System.Data.DataTable RicercaStadio();
         
@@ -211,6 +217,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> RegistraPrenotazioneAsync(Server.Utente u, System.Data.DataTable dt) {
             return base.Channel.RegistraPrenotazioneAsync(u, dt);
+        }
+        
+        public bool EliminaPrenotazione(int idp) {
+            return base.Channel.EliminaPrenotazione(idp);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EliminaPrenotazioneAsync(int idp) {
+            return base.Channel.EliminaPrenotazioneAsync(idp);
         }
         
         public System.Data.DataTable RicercaStadio() {

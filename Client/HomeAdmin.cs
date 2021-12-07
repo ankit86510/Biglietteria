@@ -68,10 +68,8 @@ namespace Client
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var np = new NuovaPartita(client);
+            var np = new NuovaPartita(this, client);
             np.Show();
-
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -104,7 +102,8 @@ namespace Client
                         MessageBox.Show("Partita rimossa con successo", "Success", MessageBoxButtons.OK);
                         button4.PerformClick();
                     }
-
+                    else
+                        MessageBox.Show("Qualcosa è andato storto!!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }

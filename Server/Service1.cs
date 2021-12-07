@@ -53,6 +53,7 @@ namespace Server
                 }
                 catch (MySqlException)
                 {
+                    Connessioni.RollbackTransax();
                     Console.WriteLine("Errore nella transazione(clienti)");
                     return false;
                 }
@@ -110,6 +111,7 @@ namespace Server
             }
             catch (Exception)
             {
+                Connessioni.RollbackTransax();
                 Console.WriteLine("Errore nell'inserimento nuova partita");
                 return false;
             }
@@ -152,6 +154,7 @@ namespace Server
             }
             catch (Exception)
             {
+                Connessioni.RollbackTransax();
                 Console.WriteLine("Errore nella modifica della partita");
                 return false;
             }
@@ -331,6 +334,22 @@ namespace Server
             }
 
         }
+        public bool EliminaPrenotazione(int idp)
+        {
+            try
+            {
+                Connessioni.Delete("DELETE FROM Effetuazione WHERE IDPrenotazione =" + idp);
+                Connessioni.Delete("DELETE FROM Prenotazione WHERE ID =" + idp);
+
+            }
+            catch (Exception)
+            {
+                Connessioni.RollbackTransax();
+                Console.WriteLine("Errore nell'eliminazione della prenotazione");
+                return false;
+            }
+            return true;
+        }
         //Funzione che ritorna la tabella delle prenotazioni
         public DataTable ListaPrenotazioni(string s)
         {
@@ -338,7 +357,7 @@ namespace Server
             string querry = string.Empty;
             try
             {
-                querry = "SELECT Partita.Incontro,Partita.DataPartita,Partita.OraInizioPartita, Stadio.Nome as Luogo, Stadio.Citta," +
+                querry = "SELECT Prenotazione.ID as ID_Prenotazione, Partita.Incontro,Partita.DataPartita,Partita.OraInizioPartita, Stadio.Nome as Luogo, Stadio.Citta," +
                     "Prenotazione.NumeroBiglietti, Prenotazione.NumeroPosti, Prenotazione.DataOraAcquisto ,Prenotazione.TotaleBiglietto" +
                     " FROM(((Prenotazione INNER JOIN Effetuazione ON Prenotazione.ID= Effetuazione.IDPrenotazione)" +
                     " INNER JOIN Partita ON Prenotazione.CodicePartita = Partita.Codice) INNER JOIN Stadio ON Partita.IDStadio = Stadio.ID)" +
@@ -385,7 +404,7 @@ namespace Server
             string query = string.Empty;
             try
             {
-                query = "SELECT prenotazione.DataOraAcquisto, prenotazione.NumeroBiglietti, partita.incontro, partita.DataPartita, stadio.Nome as Stadio,stadio.Citta, Effetuazione.IDUtente as Email_Utente FROM partita inner join stadio on partita.IDStadio=stadio.ID inner join prenotazione on partita.Codice=prenotazione.CodicePartita inner join effetuazione on prenotazione.ID=effetuazione.IDPrenotazione order by DataOraAcquisto";
+                query = "SELECT prenotazione.DataOraAcquisto, prenotazione.NumeroBiglietti, partita.Incontro, partita.DataPartita, stadio.Nome as Stadio,stadio.Citta, Effetuazione.IDUtente as Email_Utente FROM partita inner join stadio on partita.IDStadio=stadio.ID inner join prenotazione on partita.Codice=prenotazione.CodicePartita inner join effetuazione on prenotazione.ID=effetuazione.IDPrenotazione order by DataOraAcquisto";
                 var adpt = new MySqlDataAdapter(query, Connessioni.getconn());
                 adpt.Fill(dt);
                 dt.TableName = "StoricoBiglietti";

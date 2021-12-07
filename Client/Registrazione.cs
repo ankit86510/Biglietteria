@@ -34,8 +34,8 @@ namespace Client
             {
                 try
                 {
-                    dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-                    if (client.RegistrazioneUtente(txtNome.Text, txtCognome.Text, txtEmail.Text, txtPassword.Text, dateTimePicker1.Text))
+                    DateTime dn = Convert.ToDateTime(dateTimePicker1.Text);
+                    if (client.RegistrazioneUtente(txtNome.Text, txtCognome.Text, txtEmail.Text, txtPassword.Text, dn.ToString("yyyy-MM-dd")))
                     {
                         this.Hide();
                         var login = new LogIn(client);

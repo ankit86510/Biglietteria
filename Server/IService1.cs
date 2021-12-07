@@ -33,6 +33,8 @@ namespace Server
         [OperationContract]
         bool RegistraPrenotazione(Utente u, DataTable dt);
         [OperationContract]
+        bool EliminaPrenotazione(int idp);
+        [OperationContract]
         DataTable RicercaStadio();
         [OperationContract]
         bool InsNuovaPartita(DateTime Data, DateTime Ora, string Incontro, string Stadio);

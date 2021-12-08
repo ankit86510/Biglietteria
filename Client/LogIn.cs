@@ -69,5 +69,10 @@ namespace Client
             registrazione.Closed += (s, args) => this.Close();
             registrazione.Show();
         }
+
+        private void txtemail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

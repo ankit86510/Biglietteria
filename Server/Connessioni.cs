@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-//add this for MessageBox
 using System.Windows.Forms;
-
 // add data function classes
 using System.Data;
 

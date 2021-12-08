@@ -14,6 +14,7 @@ namespace Client
     {
         ServiceReference1.Service1Client client;
         Server.Utente utente;
+        //Creazione tabella carello per finalizzare acqusito partite selezionate
         public Carrello(ServiceReference1.Service1Client Client, Server.Utente u)
         {
             client = Client;
@@ -55,6 +56,7 @@ namespace Client
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
         }
+        //Aggiunge prenotazione al carrello
         public void AddPrenotazione(int CodicePartita, decimal q)
         {
             dataGridView1.Rows.Add(client.CarrelloTabelle(CodicePartita, q).Rows[0].ItemArray);

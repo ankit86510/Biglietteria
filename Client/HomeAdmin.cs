@@ -50,6 +50,7 @@ namespace Client
             dataGridView1.Rows.RemoveAt(row);
         }
 
+        //Bottone per ottenere lista clienti
         private void ClientiCensiti_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns[0].Visible = false;
@@ -121,6 +122,11 @@ namespace Client
         {
             var client = new ServiceReference1.Service1Client();
             Application.Run(new LogIn(client)); //run your new form
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

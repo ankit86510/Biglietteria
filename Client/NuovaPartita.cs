@@ -81,12 +81,12 @@ namespace Client
                             return;
                         }
                     }
-                    MessageBox.Show("Problemi di concomittanza nell'inserimento della partita" + "\r\n" +
-                    "Possibili errori potrebbero essere le seguenti:" + "\r\n" +
+                    MessageBox.Show("Problemi di concomitanza nell'inserimento della partita" + "\r\n" +
+                    "Possibili errori potrebbero essere i seguenti:" + "\r\n" +
                     "1)Inserimento di una partita già esistente" + "\r\n" +
                     "2)Le squadre selezionate hanno già in programma una partita nella data selezionata" + "\r\n" +
-                    "3)La data selezionata ha già in programma una partita in quel stadio" + "\r\n" +
-                    "(uno stadio può avere in programma solo una partità nell'arco della giornata)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "3)La data selezionata ha già in programma una partita in quello stadio" + "\r\n" +
+                    "(uno stadio può avere in programma solo una partita nell'arco della giornata)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception)
                 {

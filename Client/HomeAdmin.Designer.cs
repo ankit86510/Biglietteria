@@ -29,31 +29,38 @@ namespace Client
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeAdmin));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ClientiCensiti = new System.Windows.Forms.Button();
             this.Storico = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1, 99);
+            this.dataGridView1.Location = new System.Drawing.Point(1, 122);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1133, 371);
+            this.dataGridView1.Size = new System.Drawing.Size(1511, 457);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Visible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ClientiCensiti
             // 
-            this.ClientiCensiti.Location = new System.Drawing.Point(67, 33);
+            this.ClientiCensiti.Location = new System.Drawing.Point(89, 41);
+            this.ClientiCensiti.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ClientiCensiti.Name = "ClientiCensiti";
-            this.ClientiCensiti.Size = new System.Drawing.Size(89, 23);
+            this.ClientiCensiti.Size = new System.Drawing.Size(119, 28);
             this.ClientiCensiti.TabIndex = 1;
             this.ClientiCensiti.Text = "Lista Clienti";
             this.ClientiCensiti.UseVisualStyleBackColor = true;
@@ -61,9 +68,10 @@ namespace Client
             // 
             // Storico
             // 
-            this.Storico.Location = new System.Drawing.Point(235, 33);
+            this.Storico.Location = new System.Drawing.Point(313, 41);
+            this.Storico.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Storico.Name = "Storico";
-            this.Storico.Size = new System.Drawing.Size(109, 23);
+            this.Storico.Size = new System.Drawing.Size(145, 28);
             this.Storico.TabIndex = 2;
             this.Storico.Text = "Storico biglietti";
             this.Storico.UseVisualStyleBackColor = true;
@@ -71,9 +79,10 @@ namespace Client
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(436, 33);
+            this.button3.Location = new System.Drawing.Point(581, 41);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(141, 23);
+            this.button3.Size = new System.Drawing.Size(188, 28);
             this.button3.TabIndex = 3;
             this.button3.Text = "Inserisci nuovi eventi";
             this.button3.UseVisualStyleBackColor = true;
@@ -81,9 +90,10 @@ namespace Client
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(666, 33);
+            this.button4.Location = new System.Drawing.Point(888, 41);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(179, 23);
+            this.button4.Size = new System.Drawing.Size(239, 28);
             this.button4.TabIndex = 4;
             this.button4.Text = "Visualizza/Modifica/Elimina Partita";
             this.button4.UseVisualStyleBackColor = true;
@@ -91,30 +101,56 @@ namespace Client
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(924, 33);
+            this.button1.Location = new System.Drawing.Point(1234, 71);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 23);
+            this.button1.Size = new System.Drawing.Size(208, 28);
             this.button1.TabIndex = 5;
             this.button1.Text = "LOGOUT";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1358, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Admin Account";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Client.Properties.Resources.admin;
+            this.pictureBox1.Location = new System.Drawing.Point(1259, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(93, 52);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // HomeAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 481);
+            this.ClientSize = new System.Drawing.Size(1515, 592);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.Storico);
             this.Controls.Add(this.ClientiCensiti);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "HomeAdmin";
             this.Text = "HomeAdmin";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -126,5 +162,8 @@ namespace Client
         private System.Windows.Forms.Button button3;
         public System.Windows.Forms.Button button4;
         public System.Windows.Forms.Button button1;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

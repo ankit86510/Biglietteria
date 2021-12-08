@@ -6,15 +6,16 @@ using System.Globalization;
 
 namespace Server
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+    
     public class Service1 : IService1
     {
         //Funzioni di appoggio al server
         FunzioniServer fun = new FunzioniServer();
 
+        //Metodi esposti dal WCF
         public Utente LogInUtente(string User, string Password)
         {
-            /*Torna True se riesce ad accedere, False se prova ad accedere con credenziali non valide*/
+            //Ritorna True se riesce ad accedere, False se prova ad accedere con credenziali non valide
 
             //Esegui e incapsula query
             List<Utente> l = fun.SelectUtenti();
@@ -25,7 +26,7 @@ namespace Server
         }
         public Admin LogInAdmin(string User, string Password)
         {
-            /*Torna True se riesce ad accedere, False se prova ad accedere con credenziali non valide*/
+            //Ritorna True se riesce ad accedere, False se prova ad accedere con credenziali non valide
 
             //Esegui e incapsula query
             List<Admin> a = fun.SelectAdmin();
@@ -308,6 +309,8 @@ namespace Server
             }
             return dtCloned;
         }
+
+        //Inserimento della prenotazione
         public bool RegistraPrenotazione(Utente u, DataTable dt)
         {
             try

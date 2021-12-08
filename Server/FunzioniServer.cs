@@ -94,7 +94,7 @@ namespace Server
 
 			try
 			{
-				//Esegui e incapsula query
+				//Verifica i posti disponibili prima di consentire l'acquisto
 				TotalePostiOccupati = PostiOccupati(codicePartita);
 				TotalePostiDisponibli = TotalePostiStadio(codicePartita);
 				TotalePostiRimanenti = TotalePostiDisponibli - TotalePostiOccupati;
@@ -132,6 +132,8 @@ namespace Server
 			}
 			return TotalePostiOccupati;
 		}
+
+		// Ritorna totale posti per stadio
 		public int TotalePostiStadio(int codicePartita)
 		{
 			int TotalePostiDisponibli = 0;
@@ -149,6 +151,8 @@ namespace Server
 			}
 			return TotalePostiDisponibli;
 		}
+
+		//Verifica se esiste già uno stesso evento con la stessa data/ora o con le stesse squadre
 		public bool VerficaConcomittanzeInsPartita(string opzione,DateTime Data, DateTime Ora, string Incontro, int IDStadio)
         {
 			string[] Squadre = Incontro.Split('-');
@@ -175,7 +179,7 @@ namespace Server
 			}
 			catch (Exception)
 			{
-				Console.WriteLine("Errore nella cricerca dei posti totali");
+				Console.WriteLine("Errore nella verifica concomitanza");
 				return false;
 			}
 			return true;

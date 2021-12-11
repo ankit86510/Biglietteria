@@ -21,7 +21,8 @@ namespace Client
             InitializeComponent();
         }
 
-        //Gestione l'evento on-click per il pulasnte "Utente registrato? Clicca qui"
+        //Gestione evento on-click per il pulasnte "Utente registrato? Clicca qui"
+        //Rinvia a form di login chiudendo finestra di registrazione
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -30,7 +31,9 @@ namespace Client
             login.Show();
         }
 
-        //Gestione l'evento on-click per il pulasnte Registrati Ora
+        //Gestione evento on-click per il pulasnte Registrati Ora
+        /*Verifica che i campi di registrazioni siano pieni, converte la data nel formato del DB
+         * e chiama la funzione per Registrare l'utente passando i dati inseriti*/
         private void button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine(dateTimePicker1.Text);
@@ -54,7 +57,7 @@ namespace Client
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Qualcosa è andato storto!!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Qualcosa è andato storto!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

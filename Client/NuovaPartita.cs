@@ -16,6 +16,8 @@ namespace Client
         public ServiceReference1.Service1Client client;
         DataGridViewRow row;
         HomeAdmin ha;
+
+        //Costruttori
         public NuovaPartita(HomeAdmin a, ServiceReference1.Service1Client Client)
         {
             client = Client;
@@ -47,11 +49,12 @@ namespace Client
 
         }
 
+        //Gestione l'evento on-click per il pulsante Salva
         private void Salva_Click(object sender, EventArgs e)
         {
             if (listBox1.Text == listBox2.Text)
             {
-                MessageBox.Show("L'incontro non può essere tra due squadre uguali", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("L'incontro non può essere tra due squadre uguali", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             
@@ -65,8 +68,8 @@ namespace Client
                     {
                         if (client.InsNuovaPartita(dateTimePicker1.Value, dateTimePicker2.Value, incontro, stadioPicker.Text))
                         {
-                            MessageBox.Show("Nuovo evento inserito correttamente", "Success", MessageBoxButtons.OK);
-                            ha.button4.PerformClick();
+                            MessageBox.Show("Nuovo evento inserito correttamente", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ha.VissModElimPartita.PerformClick();
                             this.Close();
                             return;
                         }
@@ -75,8 +78,8 @@ namespace Client
                     {
                         if (client.ModificaPartita((int)row.Cells["Codice"].Value, dateTimePicker1.Value, dateTimePicker2.Value, incontro, stadioPicker.Text))
                         {
-                            MessageBox.Show("Modifica avvenuta correttamente", "Success", MessageBoxButtons.OK);
-                            ha.button4.PerformClick();
+                            MessageBox.Show("Modifica avvenuta correttamente", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ha.VissModElimPartita.PerformClick();
                             this.Close();
                             return;
                         }
@@ -95,7 +98,7 @@ namespace Client
             }
             else
             {
-                MessageBox.Show("Per favore riempi tutti i campi richiesti", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Per favore riempi tutti i campi richiesti", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

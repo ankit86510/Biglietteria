@@ -13,12 +13,15 @@ namespace Client
     public partial class Registrazione : Form
     {
         public ServiceReference1.Service1Client client;
+
+        //Costruttore
         public Registrazione(ServiceReference1.Service1Client Client)
         {
             client = Client;
             InitializeComponent();
         }
 
+        //Gestione l'evento on-click per il pulasnte "Utente registrato? Clicca qui"
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -27,6 +30,7 @@ namespace Client
             login.Show();
         }
 
+        //Gestione l'evento on-click per il pulasnte Registrati Ora
         private void button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine(dateTimePicker1.Text);
@@ -41,7 +45,7 @@ namespace Client
                         var login = new LogIn(client);
                         login.Closed += (s, args) => this.Close();
                         login.Show();
-                        MessageBox.Show("Utente registrato corretamente", "Success", MessageBoxButtons.OK);
+                        MessageBox.Show("Utente registrato corretamente", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     else

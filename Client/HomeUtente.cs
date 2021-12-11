@@ -15,7 +15,8 @@ namespace Client
         public ServiceReference1.Service1Client client;
         Server.Utente utente;
         Carrello cart;
-
+        
+        //Costruttore
         public HomeUtente(ServiceReference1.Service1Client Client, Server.Utente u)
         {
             client = Client;
@@ -51,6 +52,7 @@ namespace Client
 
         }
 
+        //Gestione l'evento on-click per il pulasnte Partite
         private void Partite_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = client.ListaPartite();
@@ -61,6 +63,7 @@ namespace Client
             dataGridView1.Visible = true;
         }
 
+        //Gestione l'evento cambio indice  per il ComboBox1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             label2.Text = comboBox1.Text;
@@ -71,8 +74,10 @@ namespace Client
 
         }
 
+        //Gestione l'evento cambio indice  per il ComboBox2
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBox2.Width = comboBox2.Items[comboBox1.SelectedIndex].ToString().Length * 7;
             dataGridView1.DataSource = client.RicercaPer(comboBox1.Text, comboBox2.Text)[1];
             dataGridView1.Columns["Codice"].DisplayIndex = 0;
             dataGridView1.Columns[0].DisplayIndex = 7;
@@ -82,6 +87,7 @@ namespace Client
 
         }
 
+        //Gestione l'evento on-click per i pulasnti Aggiungi al carrello/Elimina
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -100,7 +106,7 @@ namespace Client
                 {
                     if (client.EliminaPrenotazione((int)senderGrid.Rows[e.RowIndex].Cells["ID_Prenotazione"].Value))
                     {
-                        MessageBox.Show("Prenotazione rimossa con successo", "Success", MessageBoxButtons.OK);
+                        MessageBox.Show("Prenotazione rimossa con successo", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         button1.PerformClick();
                     }
                     else
@@ -111,6 +117,7 @@ namespace Client
 
         }
 
+        //Gestione l'evento on-click per l'immagine del Carrello
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (cart.IsDisposed)
@@ -120,6 +127,7 @@ namespace Client
             cart.WindowState = FormWindowState.Normal;
         }
 
+        //Gestione l'evento on-click per il pulsante Mie Prenotazioni
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = client.ListaPrenotazioni(utente.getEmail());
@@ -128,18 +136,18 @@ namespace Client
             dataGridView1.Columns[1].DisplayIndex = 11;
             dataGridView1.Columns[1].Visible = true;
             dataGridView1.Visible = true;
-
-
         }
 
+        //Gestione l'evento on-click per il pulsante Logout
         private void LOGOUT_Click(object sender, EventArgs e)
         {
             System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(OpenLoginForm)); //you create a new thread
-            MessageBox.Show("Utente è stato disconnesso con successo", "Success", MessageBoxButtons.OK);
+            MessageBox.Show("Utente è stato disconnesso con successo", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close(); //you close your current form (for example a menu)
             t.Start();  //you start the thread
         }
 
+        //Funzione di appoggio per il pulsante Logout
         public static void OpenLoginForm()
         {
             var client = new ServiceReference1.Service1Client();

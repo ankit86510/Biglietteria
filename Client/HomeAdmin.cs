@@ -14,6 +14,7 @@ namespace Client
     {
         public ServiceReference1.Service1Client client;
         Server.Admin admin;
+        //Costruttore
         public HomeAdmin(ServiceReference1.Service1Client Client, Server.Admin a)
         {
             client = Client;
@@ -45,12 +46,8 @@ namespace Client
             dataGridView1.Columns.Add(button2);
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
-        public void EliminaPrenotazione(int row)
-        {
-            dataGridView1.Rows.RemoveAt(row);
-        }
 
-        //Bottone per ottenere lista clienti
+        //Gestione l'evento on-click per il pulasnte Clienti Censiti
         private void ClientiCensiti_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns[0].Visible = false;
@@ -59,6 +56,7 @@ namespace Client
             dataGridView1.Visible = true;
         }
 
+        //Gestione l'evento on-click per il pulasnte Storico Biglietti
         private void Storico_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns[0].Visible = false;
@@ -67,12 +65,14 @@ namespace Client
             dataGridView1.Visible = true;
         }
 
+        //Gestione l'evento on-click per il pulasnte Nuova Partia
         private void button3_Click(object sender, EventArgs e)
         {
             var np = new NuovaPartita(this, client);
             np.Show();
         }
 
+        //Gestione l'evento on-click per il pulasnte Visulizza/Modifica/Elimina partia
         private void button4_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = client.ListaPartite();
@@ -84,6 +84,7 @@ namespace Client
 
         }
 
+        //Gestione l'evento on-click per i pulasnti Modifica/Elimina
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -100,8 +101,8 @@ namespace Client
                 {
                     if (client.EliminaPartita((int)senderGrid.Rows[e.RowIndex].Cells["Codice"].Value))
                     {
-                        MessageBox.Show("Partita rimossa con successo", "Success", MessageBoxButtons.OK);
-                        button4.PerformClick();
+                        MessageBox.Show("Partita rimossa con successo", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        VissModElimPartita.PerformClick();
                     }
                     else
                         MessageBox.Show("Qualcosa è andato storto!!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -110,23 +111,21 @@ namespace Client
             }
         }
 
+        //Gestione l'evento on-click per il pulsante Logout
         private void button1_Click(object sender, EventArgs e)
         {
-            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(OpenLoginForm)); //you create a new thread
-            MessageBox.Show("Admin è stato disconnesso con successo", "Success", MessageBoxButtons.OK);
-            this.Close(); //you close your current form (for example a menu)
-            t.Start();  //you start the thread
+            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(OpenLoginForm)); //creazione di un nuovo thread
+            MessageBox.Show("Admin è stato disconnesso con successo", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close(); 
+            t.Start();  //start del nuovo thread
         }
 
+        //Funzione di appoggio per il pulsante Logout
         public static void OpenLoginForm()
         {
             var client = new ServiceReference1.Service1Client();
-            Application.Run(new LogIn(client)); //run your new form
+            Application.Run(new LogIn(client)); 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Client
 {
+    //Creazione tabella carello per finalizzare acqusito partite selezionate
     public partial class Carrello : Form
     {
         ServiceReference1.Service1Client client;
         Server.Utente utente;
-        //Creazione tabella carello per finalizzare acqusito partite selezionate
+        
+        //Costruttore
         public Carrello(ServiceReference1.Service1Client Client, Server.Utente u)
         {
             client = Client;
@@ -61,6 +63,8 @@ namespace Client
         {
             dataGridView1.Rows.Add(client.CarrelloTabelle(CodicePartita, q).Rows[0].ItemArray);
         }
+
+        //Modifica prenotazione al carrello
         public void ModificaPrenotazione(int row, decimal q)
         {
             dataGridView1.Rows[row].Cells["N° Biglietti"].Value = Decimal.ToInt32(q);
@@ -68,11 +72,14 @@ namespace Client
             dataGridView1.Rows[row].Cells["Prezzo Biglietto in €"].Value = client.CarrelloTabelle((int)dataGridView1.Rows[row].Cells["Codice"].Value, q).Rows[0]["Prezzo Biglietto in €"].ToString();
 
         }
+
+        //Elimina prenotazione dal carrello
         public void EliminaPrenotazione(int row)
         {
             dataGridView1.Rows.RemoveAt(row);
         }
 
+        //Gestione l'evento on-click per i pulasnti Modifica/Elimina
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -92,6 +99,8 @@ namespace Client
                     EliminaPrenotazione(senderGrid.Rows[e.RowIndex].Index);
             }
         }
+
+        //Gestione chiusura della finestra Carrello
         private void Carrello_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing && dataGridView1.Rows.Count > 1)
@@ -102,6 +111,8 @@ namespace Client
             }
         }
 
+
+        //Label per visualizzare totale delle prenotazione presenti nel carrello
         private void label1_Click(object sender, EventArgs e)
         {
             int totale = 0;
@@ -114,6 +125,7 @@ namespace Client
             textBox1.Text = totale.ToString();
         }
 
+        //Gestione l'evento on-click per il bottone Acquista
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -143,12 +155,12 @@ namespace Client
                 if (client.RegistraPrenotazione(utente, dt))
                 {
                     dataGridView1.Rows.Clear();
-                    MessageBox.Show("Acquisto andato a buon fine", "Success", MessageBoxButtons.OK);
+                    MessageBox.Show("Acquisto andato a buon fine", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }
             else
-                MessageBox.Show("CARRELLO VUOTO!! PRIMA AGGIUNGI QUALCOSA", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("CARRELLO VUOTO!! PRIMA AGGIUNGI QUALCOSA", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         }
     }

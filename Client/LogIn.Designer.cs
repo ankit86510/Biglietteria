@@ -70,7 +70,6 @@ namespace Client
             this.txtemail.Name = "txtemail";
             this.txtemail.Size = new System.Drawing.Size(316, 22);
             this.txtemail.TabIndex = 2;
-            this.txtemail.TextChanged += new System.EventHandler(this.txtemail_TextChanged);
             // 
             // txtpsw
             // 

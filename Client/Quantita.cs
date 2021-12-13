@@ -19,6 +19,7 @@ namespace Client
         int row;
 
         //Costruttore
+        //Istanzia oggetto quantità e mostra i posti diponibili per la partita selezionata dall'utente
         public Quantita(ServiceReference1.Service1Client Client, Server.Utente u, Carrello c,int s, int r)
         {
             client = Client;
@@ -32,7 +33,10 @@ namespace Client
             textBox2.Text = posti.Item2.ToString();
         }
 
-        //Gestione l'evento on-click per il pulasnte Aggiungi al Carrello
+        //Gestione evento on-click per il pulasnte Aggiungi al Carrello
+        /*Aggiunge la prenotazione al carrello controllando che sia stato selezionato almeno un biglietto, 
+         * che non esista già una prenotazione per quella partita 
+         * e che il numero di posti richiesti siano disponibili*/
         private void button1_Click(object sender, EventArgs e)
         {
             if (numericUpDown1.Value > 0)
@@ -44,8 +48,7 @@ namespace Client
                         if (row.Index < cart.dataGridView1.Rows.Count - 1)
                             if (Convert.ToInt32(row.Cells[0].Value.ToString()) == CodicePartita)
                             {
-                                MessageBox.Show("E' già presente una prenotazione di questa partita nel carrello." +
-                                    "Se vuoi aggiungere altri biglieti per questa partita, modifica quella già presente nel carrello! ", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("E' già presente una prenotazione di questa partita nel carrello. Se vuoi aggiungere altri biglieti per questa partita, modifica quella già presente nel carrello! ", "Attenzione", MessageBoxButtons.OK);
                                 this.Close();
                                 return;
                             }
@@ -68,7 +71,7 @@ namespace Client
                 MessageBox.Show("Il valore inserito deve essere maggiore ad 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        //Gestione l'evento on-click per il pulasnte Salva
+        //Gestione evento on-click per il pulasnte Salva
         private void button2_Click(object sender, EventArgs e)
         {
             if (numericUpDown1.Value > 0)

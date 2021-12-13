@@ -18,6 +18,7 @@ namespace Client
         HomeAdmin ha;
 
         //Costruttori
+        //Istanzia oggetto nuova partita caricando lista degli stadi, delle squadre, time e date picker
         public NuovaPartita(HomeAdmin a, ServiceReference1.Service1Client Client)
         {
             client = Client;
@@ -49,7 +50,8 @@ namespace Client
 
         }
 
-        //Gestione l'evento on-click per il pulsante Salva
+        //Gestione evento on-click per il pulsante Salva
+        // Salva l'incontro inserito se non ci sono errori di concomitanza, se l'evento è già presente, se lo stadio è già occupato in quella data
         private void Salva_Click(object sender, EventArgs e)
         {
             if (listBox1.Text == listBox2.Text)

@@ -24,6 +24,7 @@ namespace Client
         }
 
         //Gestione l'evento on-click per il pulsante LOGIN
+        //Verifica se le credenziali inserite sono admin o user e, se corrette, mostra la rispettiva Home
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -66,6 +67,7 @@ namespace Client
         }
 
         //Gestione l'evento on-click per il pulsante Utente non Registrato
+        //Rinvia alla finestra di registrazione nuovo utente
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();

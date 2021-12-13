@@ -125,7 +125,7 @@ namespace Client
             textBox1.Text = totale.ToString();
         }
 
-        //Gestione l'evento on-click per il bottone Acquista
+        //Gestione evento on-click per il bottone Acquista
         private void button1_Click(object sender, EventArgs e)
         {
 

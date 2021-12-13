@@ -234,7 +234,7 @@ namespace Server
                         querrydt1 = "SELECT Partita.DataPartita FROM Partita GROUP BY DataPartita";
                         if (value != string.Empty)
                         {
-                            DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateResult);
+                            DateTime.TryParse(value, CultureInfo.CurrentCulture, DateTimeStyles.None, out dateResult);
                             querrydt2 = "SELECT Partita.Codice,Partita.Incontro,Partita.DataPartita,Partita.OraInizioPartita, Stadio.Nome as Luogo," +
                                     "Stadio.Citta FROM Partita INNER JOIN Stadio ON Partita.IDStadio = Stadio.ID WHERE DataPartita = '"
                                     + dateResult.ToString("yyyy'-'MM'-'dd") + "'";

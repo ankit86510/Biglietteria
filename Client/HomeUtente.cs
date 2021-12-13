@@ -136,6 +136,9 @@ namespace Client
             dataGridView1.Columns[1].DisplayIndex = 11;
             dataGridView1.Columns[1].Visible = true;
             dataGridView1.Visible = true;
+            int dgv_width = dataGridView1.Columns.GetColumnsWidth(DataGridViewElementStates.Visible);
+            this.Width = dgv_width + 140;
+
         }
 
         //Gestione l'evento on-click per il pulsante Logout
